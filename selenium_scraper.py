@@ -63,14 +63,18 @@ def input_search(driver: WebDriver):
 
 def press_button(driver: WebDriver):
 
-    # TODO: You could do an explicit wait here, instead of this.
-    sleep(random.uniform(4.0, 6.0)) # Button sometimes takes time to load
+
 
     for i in range(4):
 
+        # TODO: You could do an explicit wait here, instead of this.
+        sleep(random.uniform(2.0, 4.0)) # Makes it more human-like
+
         load_content_button = driver.find_element(By.XPATH, const.LOAD_CONTENT_BUTTON_XPATH)
         load_content_button.click()
-        sleep(random.uniform(4.0, 7.0)) # Makes it more human-like
+
+        sleep(random.uniform(2.0, 3.0)) # Waits for the button to render again before scrolling
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)") # Scroll to bottom of page
 
         logger.info(f"Loaded more content by pressing the button successfully ({i+1}).")
 
